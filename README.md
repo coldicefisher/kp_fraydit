@@ -4,9 +4,11 @@ Python library that manages kafka producing with Exact Once Semantics, paralleli
 Please refer to the documentation.html in the root folder for more details.
 
 There are several classes which need to be refactored. The primary classes that are functioning are the:
-**BaseProducer
-**BaseConsumer
-**Connection - THIS IS A SINGLETON CLASS
+**BaseProducer**
+
+**BaseConsumer**
+
+**Connection - THIS IS A SINGLETON CLASS**
 
 **To initialize, you will need to set the KAFKA_REGISTRY_LISTENER, KAFKA_BROKER_LISTENER and API_VERSION in the Connection.py file. This should have initialized from environment variables. This is a BUG.**
 
