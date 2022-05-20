@@ -89,42 +89,44 @@ from threading import Thread
 from queue import Queue
 
 from asgiref.sync import async_to_sync
+
 import asyncio
+
 from channels.generic.websocket import WebsocketConsumer, AsyncJsonWebsocketConsumer
+
 from libs.exceptions.auth_exceptions import UserUnauthorizedError
 
-# from libs.cass_auth.auth_errors import UserUnauthorizedError
 from libs.cass_auth.security import decode_token
-from libs.cass_auth.middleware import User
-# from libs.cass_auth.businesses.business_model import BusinessModel
-# from libs.cass_auth.documents.document_model import DocumentModel
-# from libs.cass_auth.documents.document_errors import DocumentExistsError
 
-# from libs.public_data.users_data import UsersData
+from libs.cass_auth.middleware import User
 
 from libs.kp_fraydit.consumers.base_consumer import BaseConsumer
+
 from libs.kp_fraydit.metaclasses import SingletonMeta
+
 from libs.kp_fraydit.admin.admin_engine import AdminEngine
+
 from libs.kp_fraydit.datetime_functions import utc_now_as_long
+
 from libs.uuid.uuid import random_uuid
 
 from userSocket.subscription_status import BusinessSubscription
 
 from userSocket.business_consumer import BusinessConsumer
+
 from userSocket.profile_consumer import ProfileConsumer
+
 from userSocket.search_consumer import SearchConsumer
+
 from userSocket.forms_consumer import FormsConsumer
 
-# from libs.kp_fraydit.producers.auto_producer import AutoProducer
 from libs.kp_fraydit.producers.base_producer import BaseProducer
 
 from libs.exceptions.handle_errors import KafkaLoggingHandler, handleErrors
 
 
 class userConsumer(AsyncJsonWebsocketConsumer):
-    # CANNOT USE INIT BECAUSE IT RETURNS AN EMPTY CONNECITON AND ERRORS OUT!!!
-    # def __init__(self):
-
+    
     @property
     def business_producer(self):
         try:
@@ -144,18 +146,12 @@ class userConsumer(AsyncJsonWebsocketConsumer):
         try: return self.__produce_queue
         except: return None
 
-    # THIS FUNCTION IS CALLED IN ANOTHER THREAD AND PRODUCES MESSAGES FROM SUBSCRIBED TOPICS.
     '''
+        THIS FUNCTION IS CALLED IN ANOTHER THREAD AND PRODUCES MESSAGES FROM SUBSCRIBED TOPICS.
+    
         All messages are placed into a queue and then consumed by this function. The broadcast received is passed to the consumer as a callback function
-    '''
-    # @async_to_sync
-    # async def _produce_messages_from_kafka(self):
-    #     while True:
-    #         key, value, audience = self.produce_queue.get()
-    #         await self.send_json({'command': value.get('command'), 'message': value.get('message'), 'audience': audience})
-    #         #self.send_json({'command': 'system', 'message': 'system wide message bro'})    
-
-
+    
+    
     def _receive_all_users_message(self, key, value):
         print (f'broadcast all: {key} and value: {value}')
         self.produce_queue.put([key, value, "systemWide"])
@@ -193,18 +189,14 @@ class userConsumer(AsyncJsonWebsocketConsumer):
                     await self.send_json(msg)
         except UserUnauthorizedError:
             pass    
-    # CONNECT ////////////////////////////////////////////////////////////////////////////////////////
-    
     
     async def connect(self):
         await self.accept()
         
-        # HANDLE SUBSCRIPTIONS ///////////////////////////////////////////////////////////////////////////
         if self.produce_queue is None: self.__produce_queue = Queue() # Must be initialized before the callback funciton is passed to the consumer
         self.subscribe_to_business()
             
-    # END CONNECT() ///////////////////////////////////////////////////////////////////////////////////////////////
-    # @handleErrors
+    @handleErrors
     def subscribe_to_business(self):
         # Create if not exists
         # if not AdminEngine().cluster.topics.exists(f'businessMessages'):
@@ -270,27 +262,6 @@ class userConsumer(AsyncJsonWebsocketConsumer):
             elif cmd == 'search_emails': await self.send_json(SearchConsumer().search_emails(payload=payload))
         elif key == 'forms':
             if cmd == 'get_doc': await self.send_json(FormsConsumer().get_doc())
-            elif cmd == 'signed_document': await self.send_json(FormsConsumer().signed_document(payload=payload))
-
-        # # Handle Exceptions        
-        # except UserUnauthorizedError as e: await self.send_unauthorized_message()
-        # except Exception as e: await self.send_error_message()
-
-
-        # REFACTOR!!!!!!!!!!    
-        # elif cmd == 'get_signature':
-        #     doc = DocumentModel().get(id='24ade91f-6725-4999-9ff8-cbc7e21322cf')
-        #     encoded = doc.converted_signature
-        #     await self.send_json({'command': 'document_fetched', 'payload': {
-        #             'contents': encoded
-        #     }})
-
-        # REFACTOR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        
-# END SOCKET COMMANDS //////////////////////////////////////////////////////////////////////////////////
-# //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
                                 
     async def disconnect(self, code):
         await self.close(code)
