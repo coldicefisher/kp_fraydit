@@ -73,7 +73,9 @@ PUT IT ALL TOGETHER!!!! This is a real world example, based on https://www.bizni
 ///////////////////////////////////////////////// WEBSOCKET EXAMPLE /////////////////////////////////////////////////////////////////
 
 
-
+def nothing():
+    pass
+    
 from datetime import datetime
 import json
 import time
