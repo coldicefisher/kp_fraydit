@@ -51,9 +51,9 @@ There are a few ways to instantiate this class. If you instantiate this class di
 This class extends the Confluent Kafka's consumer class. It is similar in usage as the producer.
 
 ///////////////////////////////////////////////// Consumer Example 1 //////////////////////////////////////////////////////
-
+```
 self.business_consumer = BaseConsumer.from_topic(topic_name=f"businessMessages", group_id=f"businessMessages.{random_uuid()}", on_message=self._receive_business_message, read_from_beginning=False)
-
+```
 ///////////////////////////////////////////////// End Consumer Example 1 //////////////////////////////////////////////////
 
 This is a real world example from my site, https://www.bizniz.io. I have a websocket that consumes messages that are related to businesses that the user may own. 
@@ -72,11 +72,7 @@ read_from_beginning = False. This settings instantiates the Consumer with the se
 PUT IT ALL TOGETHER!!!! This is a real world example, based on https://www.bizniz.io, of how this class is used in the websocket...
 
 ///////////////////////////////////////////////// WEBSOCKET EXAMPLE /////////////////////////////////////////////////////////////////
-
-@property
-def nothing():
-    pass
-    
+``` 
 from datetime import datetime
 import json
 import time
@@ -94,37 +90,22 @@ from queue import Queue
 from asgiref.sync import async_to_sync
 
 import asyncio
-
 from channels.generic.websocket import WebsocketConsumer, AsyncJsonWebsocketConsumer
-
 from libs.exceptions.auth_exceptions import UserUnauthorizedError
-
 from libs.cass_auth.security import decode_token
-
 from libs.cass_auth.middleware import User
-
 from libs.kp_fraydit.consumers.base_consumer import BaseConsumer
-
 from libs.kp_fraydit.metaclasses import SingletonMeta
-
 from libs.kp_fraydit.admin.admin_engine import AdminEngine
-
 from libs.kp_fraydit.datetime_functions import utc_now_as_long
-
 from libs.uuid.uuid import random_uuid
 
 from userSocket.subscription_status import BusinessSubscription
-
 from userSocket.business_consumer import BusinessConsumer
-
 from userSocket.profile_consumer import ProfileConsumer
-
 from userSocket.search_consumer import SearchConsumer
-
 from userSocket.forms_consumer import FormsConsumer
-
 from libs.kp_fraydit.producers.base_producer import BaseProducer
-
 from libs.exceptions.handle_errors import KafkaLoggingHandler, handleErrors
 
 
@@ -268,7 +249,7 @@ class userConsumer(AsyncJsonWebsocketConsumer):
                                 
     async def disconnect(self, code):
         await self.close(code)
-
+```
 /////////////////////////////////////////// END WEBSOCKET //////////////////////////////////////////////////////////////////
 
 In this class, which is used in production, you can see exactly how the BusinessConsumer uses the callback to wire in the messages, filter them out, and then process them. Let's go over it:
@@ -289,7 +270,7 @@ read_from_beginning = False. I want each socket to begin consuming messages afte
 
 
 **CALLBACK**
-
+```
     @async_to_sync
     async def _receive_business_message(self, key, value):
         try:
@@ -316,7 +297,7 @@ read_from_beginning = False. I want each socket to begin consuming messages afte
                     await self.send_json(msg)
         except UserUnauthorizedError:
             pass    
-
+```
 The callback method needs to contain a key and a value. This is the key and value of the record (message) that is received from Kafka. Then, just write your business logic from there.
 
 SIDE NOTES: 
@@ -324,7 +305,7 @@ SIDE NOTES:
 Because I am using an asynchronous websocket consumer, I need to convert the method to a synchronous method so that I can use the "await self.send_json" method of the class instance. 
 
 There is a decorator that is commented out. @HandleErrors. This wraps the function in a try catch loop and calls the logging module whenever there is an error. The logging module has a custom handler that implements the BaseProducer to write to a log file. I think this is also a great example of this class usage:
-
+```
 import logging
 import os
 import sys
@@ -354,13 +335,10 @@ formatter    = logging.Formatter('%(asctime)s : %(levelname)s : %(name)s : %(mes
 
 # Set logger level to error
 logger.setLevel(logging.INFO)
-
+```
 
 ///////////////////////////////////////////// Custom Logging Example /////////////////////////////////////////////////////////
-@property
-def nothing():
-    pass
-    
+```    
 class KafkaLoggingHandler(logging.Handler):
 
     def __init__(self):
@@ -409,7 +387,8 @@ def handleErrors(func):
     
     
     return inner
-    
+```
+
 Please reach out to me if you have any questions! I cannot guarantee I can get to them as I am super busy trying to break into the Software Engineering field, working kids, my own projects, etc. But I will sure try!
   
 I hope this codebase helps someone out there achieve their goals as other contributors have lended to my achievements. Thank you open source community!
