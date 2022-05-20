@@ -389,6 +389,16 @@ def handleErrors(func):
     return inner
 ```
 
-Please reach out to me if you have any questions! I cannot guarantee I can get to them as I am super busy trying to break into the Software Engineering field, working kids, my own projects, etc. But I will sure try!
-  
+The AdminEngine class is helpful in navigating the confluent rest api and gathering information. There are some basic methods wired in. So:
+
+```
+from kp_fraydit.admin.admin_engine import AdminEngine
+cluster = AdminEngine().cluster
+if not cluster.topics.exists('SOME_TOPIC'): cluster.topics.create('SOME_TOPIC')
+cluster.delete('SOME_TOPIC')
+
+```
+
+There is a ton of useful code that can parse schemas, create schemas, add fields to schemas in the schemas module. It has been a year since I have looked at the code and I know it is in dire need of refactoring. Good luck!
+
 I hope this codebase helps someone out there achieve their goals as other contributors have lended to my achievements. Thank you open source community!
