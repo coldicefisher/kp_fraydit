@@ -1,0 +1,11 @@
+2021-08-13 04:59:14,066 : ERROR : kp_fraydit.custom_errors : Kafka registry unreachable at address: http://10.100.100.8:8081
+2021-08-13 05:09:06,091 : ERROR : kp_fraydit.custom_errors : Kafka registry unreachable at address: http://10.100.100.8:8081
+2021-08-13 05:10:46,103 : ERROR : kp_fraydit.custom_errors : Kafka registry unreachable at address: http://10.100.100.8:8081
+2021-08-13 05:12:26,825 : ERROR : kp_fraydit.custom_errors : Kafka registry unreachable at address: http://10.100.100.8:8081
+2021-08-13 05:13:37,188 : ERROR : kp_fraydit.custom_errors : Kafka registry unreachable at address: http://10.100.100.8:8081
+2021-08-13 05:14:33,982 : ERROR : kp_fraydit.custom_errors : Kafka registry unreachable at address: http://10.100.100.8:8081
+2021-08-13 05:16:36,477 : ERROR : kp_fraydit.custom_errors : Kafka registry unreachable at address: http://10.100.100.8:8081
+2021-08-13 05:17:58,907 : ERROR : kp_fraydit.custom_errors : Kafka registry unreachable at address: http://10.100.100.8:8081
+2021-08-13 05:19:06,864 : ERROR : kp_fraydit.custom_errors : Kafka registry unreachable at address: http://10.100.100.8:8081
+2021-08-13 05:24:42,583 : ERROR : kp_fraydit.custom_errors : Kafka registry unreachable at address: http://10.100.100.8:8081
+2021-08-13 05:28:22,197 : ERROR : kp_fraydit.custom_errors : Kafka registry unreachable at address: http://10.100.100.8:8081

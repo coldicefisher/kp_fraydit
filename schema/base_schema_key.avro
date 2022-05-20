@@ -1,0 +1,9 @@
+{
+    "doc": "Automatically created by kp_fraydit. Same keys are stored on the same partition. Each symbol will be stored by the month",
+    "fields": [
+    
+    ],
+    "name": "base_schema_key",
+    "namespace": "kp_fraydit.base_schema_key",
+    "type": "record"
+}

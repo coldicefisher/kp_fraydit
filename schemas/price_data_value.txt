@@ -1,0 +1,39 @@
+{
+    "doc": "Automatically created by kp_fraydit.",
+    "fields": [
+      {
+        "doc": "open price.",
+        "name": "open",
+        "type": "float"
+      },
+      {
+        "doc": "high price",
+        "name": "high",
+        "type": "float"
+      },
+      {
+        "doc": "low price",
+        "name": "low",
+        "type": "float"
+      },
+      {
+        "doc": "close price",
+        "name": "close",
+        "type": "float"
+      },
+      {
+        "doc": "volume",
+        "name": "volume",
+        "type": "long"
+      },
+      {
+        "doc": "timestamp is in YYYYMMDDHHMMSS format and should be stored as UTC",
+        "name": "timestamp",
+        "type": "long"
+      }
+
+    ],
+    "name": "price_data_value",
+    "namespace": "kp_fraydit.price_data_value",
+    "type": "record"
+  }

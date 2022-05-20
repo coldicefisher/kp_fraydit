@@ -1,0 +1,60 @@
+from kafka_python.producers.producer import Producer
+from kafka_python.connection_settings import ConnectionSettings
+c = ConnectionSettings()
+
+
+c.kafka_registry_listener = 'http://10.100.100.8:7000'
+
+
+prod = Producer('test')
+
+
+pub = ConnectionPublisher()
+sub = Subscriber()
+pub.attach(sub)
+pub.some_business_logic()
+
+
+from kafka_python.connections.connection import Subject, Observer, ConcreteObserver
+subject = Subject()
+concrete_observer = ConcreteObserver()
+subject.attach(concrete_observer)
+subject.broker_online = True
+
+
+
+
+
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
+import time
+
+def check_loop():
+    checker = True
+    while True:
+        if checker == True: checker = False
+        else: checker = True
+        time.sleep(1)
+
+
+
+
+
+
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
+from kafka_python.connections.connection import ConnectionSubject
+from kafka_python.connections.connection_settings import ConnectionSettings
+
+conn = ConnectionSettings()
+s = ConnectionSubject(conn)
+s._check_connections()
+
+# s.broker_online
+
+
+from kafka_python.connections.connection import KafkaConnection as kConn
+
+
+
+from kafka_python.producers.producer import Producer
+prod = Producer('test_key_None')
+prod.addValueArgs(myField1 =123, myField2 =123, myField3 = 'test')

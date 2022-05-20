@@ -1,0 +1,57 @@
+{
+  "doc": "Automatically created by kp_fraydit.",
+  "fields": [
+    {
+      "doc": "",
+      "name": "open",
+      "type": [
+        "double"
+      ]
+    },
+    {
+      "doc": "",
+      "name": "high",
+      "type": [
+        "double"
+      ]
+    },
+    {
+      "doc": "",
+      "name": "low",
+      "type": [
+        "double"
+      ]
+    },
+    {
+      "doc": "",
+      "name": "close",
+      "type": [
+        "double"
+      ]
+    },
+    {
+      "doc": "",
+      "name": "volume",
+      "type": [
+        "double"
+      ]
+    },
+    {
+      "doc": "timestamp is in YYYYMMDDHHMMSS format and should be stored as UTC",
+      "name": "timestamp",
+      "type": [
+        "int"
+      ]
+    },
+    {
+      "doc": "interval is the aggregate length of the bar in seconds",
+      "name": "interval",
+      "type": [
+        "int"
+      ]
+    }
+  ],
+  "name": "price_data_value",
+  "namespace": "kp_fraydit.price_data_value",
+  "type": "record"
+}

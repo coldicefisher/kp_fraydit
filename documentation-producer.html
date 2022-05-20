@@ -1,0 +1,219 @@
+<html>
+    <head>
+       <style>
+           p {
+                margin-bottom: 60px;
+           }
+           
+           ul li {
+                margin-bottom: 30px;
+           }
+            ol li {
+                margin-bottom: 30px;
+            }
+            .section {
+                display: block;
+                border-bottom: 3px solid black;
+                margin-bottom: 80px;
+            }         
+       </style>
+    </head>
+    <body>
+        
+        <h1>Documentation</h1>
+        <h3>Producer</h3>
+        <h4>Overview</h4>
+        <p>
+            A super class that produces records simply by passing arguments. The argumenats persist within the object.
+        </p>
+        <div class='section'>
+            <h4>Initialization</h4>
+            <h5>
+                Producer(<a href='#kafka_broker_listener'>kafka_broker_listener</a>, <a href='#topic_name'>topic_name</a>, 
+                <a href='#value_schema_name'>value_schema_name=None</a>, <a href='#key_schema_name'>key_schema_name=None</a>, 
+                <a href='#optional_value_args'>optional_value_args=[]</a>, <a href='#optional_key_args'>optional_key_args=[]</a>, 
+                <a href='#cache_schemas'>cache_schemas=True</a>)
+            </h5>
+            <ol>
+                <li>
+                    <div id='kafka_broker_listener'>
+                        <b>kafka_broker_listener</b>: String | <strong>Required</strong>- Specifies the listener port for the kafka broker that records 
+                        will be produced to.
+                    </div>
+                </li>
+                <li>
+                    <div id='topic_name'>
+                        <b>topic_name</b>: String | <strong>Required</strong>- Topic name that will be produced to in Kafka.
+                    </div>
+                </li>
+                <li>
+                    <div id='value_schema_name'>
+                        <b>value_schema_name</b>: String | Optional- Value schema name that is registered in Kafka. Defaults to {$topic}-value
+                    </div>
+                </li>
+                <li>
+                    <div id='key_schema_name'>
+                        <b>key_schema_name</b>: String | Optional- Schema name that is registered in Kafka. Defaults to {$topic}-key
+                    </div>
+                </li>
+                <li>
+                    <div id='optional_value_args'>
+                        <b>optional_value_args</b>: List(Empty) | Optional- A list of optional fields from the Kafka schema that are 
+                        required by to produce to kafka.
+                    </div>
+                </li>
+                <li>
+                    <div id='optional_key_args'>
+                        <b>optional_key_args</b>: List(Empty) | Optional- A list of optional fields from the Kafka schema  that are 
+                        required to produce to kafka.
+                    </div>
+                </li>
+                <li>
+                    <div id='cache_schemas_arg'>
+                        <b>cache_schemas</b>: Boolean(True) | Optional- When set to True the producer will save the value and key schemas. This saves 
+                        time from looking up the schemas on each operation. Many functions access the schema. If the schemas are not expected to be dynamically changing
+                        at runtime, this should be set to True.
+                    </div>
+                </li>
+            </ol>
+            <br />
+        </div>
+        <div class='section'>
+            <h4>Usage</h4>
+            <p>The class initializes an instance of confluent-kafka SerializingProducer. This super class is thread safe and 
+                therefore this class should inherit the thread safe abilities. One instance should be created and then parallelized 
+                to handle multiple threads and/or processes. This will save space in the RAM.  
+                
+                The class is initialized as a usage for a <strong>specific topic that contains an avro key and value schema</strong>. 
+                The schemas for the key and value are autmoatically stored as attributes. The fields are stored as all, required, and optional 
+                fields. 
+                
+                The class is meant to be used by passing fields with the <a href='#addKeyArgs'>addKeyArgs</a> and <a href='addValueArgs'>addValueArgs</a> methods.
+                The class will produce a record when either condition is met:
+                </p>
+                <ol>
+                    <li>
+                        All of the fields are supplied
+                    </li>
+                    <li>
+                        All of the required fields are supplied plus all of the optional fields are supplied at Initialization. So, for 
+                        any fields that are not required in the avro schema but you wish to require in order to produce, these arguments need to be
+                        supplied at Initialization by passing a list for the <a href='#optional_key_args'>optional_key_args</a> | <a href='optional_value_args'>optional_value_args</a>
+                        parameters
+                    </li>
+                </ol>
+            <p>
+                The class provides the ability to store the values of fields over multiple calls, which means that your code can add these key values as separate transactions and the previous values
+                will persist. By calling the <a href='addValueArgs'>addValueArgs</a> and <a href='addKeyArgs'>addKeyArgs</a> in your code, you can add a single record at a time. The values persist until
+                the conditions are met to <a href='produce'>produce</a> the record. Then, the key and value records are set to an empty dictionary.
+            </p>
+        </div>
+        <div class='section'>
+            <h4>Attributes</h4>
+            <ol>
+                <li>
+                    <div id='cache_schemas'>
+                        <b>cache_schemas</b>: Boolean | Default: True - Set to true to cache the schemas. Set to False to pull the schemas on 
+                        each operation.
+                    </div>
+                </li>
+            </ol>        
+            
+                    <h5>Related to the Value Schema</h5>
+                    <ol>
+                        <li>
+                            <div id='value_schema_name'>
+                                <b>value_schema_name</b>: String- Name of the value schema.
+                            </div>
+                        </li>
+                        <li>
+                            <div id='current_value_schema'>
+                                <b>current_value_schema:</b> Type(<a href='https://docs.confluent.io/platform/current/clients/confluent-kafka-python/html/index.html#schema'>confluent_kafka.schema_registry.Schema</a>) 
+                                Schema object of the current schema. <strong>The class uses the most recent version of the schema as the current schema. 
+                                    This needs to be updated eventually to use the current schema that is in use.</strong>
+                            </div>
+                        </li>
+                        <li>
+                            <div id='value_record'>
+                                <b>value_record</b>: Dict- Holds the key:values that are added with the a <a href='#addvalueArgs'>addValueArgs</a> method.
+                            </div>
+                        </li>
+                        <li>
+                            <div id='value_fields'>
+                                <b>value_fields</b>: List- Holds the value field names.
+                            </div>
+                        </li>    
+                        <li>
+                            <div id='required_value_fields'>
+                                <b>required_value_fields</b>: List- Holds the value field names required by the kafka schema to write a record.
+                            </div>
+                        </li>
+                        <li>
+                            <div id='optional_value_fields'>
+                                <b>optional_value_fields</b>: List- Holds the value field names that are not required by the kafka schema to write a record. If the initialization method has no list items supplied to the 
+                                optional_value_args, then the produce method will be called automatically after all the required fields have been passed by the addValueArgs
+                            </div>
+                        </li>
+                        
+                    </ol>
+                    <h5>Related to the Key Schema</h5>
+                    <ol>
+                        <li>   
+                            <div id='key_schema_name'>
+                                <b>key_schema_name</b>: String- Name of the key schema
+                            </div>
+                        </li>
+                        <li>
+                            <div id='current_key_schema'>
+                                <b>current_key_schema</b>: Type(<a href='https://docs.confluent.io/platform/current/clients/confluent-kafka-python/html/index.html#schema'>confluent_kafka.schema_registry.Schema</a>) Schema object of the current schema. <strong>The class uses the most recent version of the schema as the current schema. This needs to be updated eventually.</strong>
+                            </div>
+                        </li>
+                        <li>
+                            <div id='key_record'>
+                                <b>key_record</b>: Dict- Holds the key:values that are added with the <a href='#addValueArgs'>addValueArgs</a> at initialization.
+                            </div>
+                        </li>
+                        <li>
+                            <div id='key_fields'>
+                                <b>key_fields</b>: List- Holds the key field names. <a href='#appendix1'>See appendix 1</a>
+                            </div>
+                        </li>    
+                        <li>
+                            <div id='required_key_fields'>
+                                <b>required_key_fields</b>: List- Holds the key fields required by the kafka schema to write a record.
+                                <a href='#appendix1'>See appendix 1</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div id='optional_key_fields'>
+                                <b>optional_key_fields</b>: List- Holds the key fields that are not required by the kafka schema to write a record. If the initialization method has no list items supplied to the 
+                                optional_key_args, then the produce method will be called automatically after all the required fields have been passed by the addKeyArgs
+                                <a href='#appendix1'>See appendix 1</a>
+                            </div>
+                        </li>
+                        
+                    </ol>
+        </div>
+        <div class='section'>
+            <h4>Methods</h4>
+                    <h5>Related to the Value Schema</h5>
+                    <ol>
+                        <li>
+                            <div id='addValueArgs'>
+                                <b>addValueArgs(**kwargs)</b>- Add the key:value pairs to the arguments that will be written to the kafka record in the <a href='#value_record'>value_record</a>. 
+                                The key:values can be overwritten by the code. Once the record is produced, the
+                                <a href='#value_record'>value_record</a> is set to an empty list. 
+                            </div>
+                        </li>
+                    </ol>
+                    <h5>Related to the Key Schema</h5>
+                    <ol>
+                        <li>
+                            <b>addKeyArgs(**kwargs)</b>- Add the key:value pairs to the arguments that will be written to the kafka record in the <a href='#key_record'>key_record</a>. 
+                            The key:values can be overwritten by the code. Once the record is produced, the
+                            <a href='#key_record'>key_record</a> is set to an empty list. 
+                        </li>
+                    </ol>
+        </div>
+    </body>
+</html>

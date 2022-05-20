@@ -1,0 +1,1 @@
+2021-06-21 04:46:26,578 : ERROR : kafka_python.custom_errors : Kafka broker unreachable at address: 10.100.100.8:9092

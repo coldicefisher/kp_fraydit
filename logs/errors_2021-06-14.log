@@ -1,0 +1,1 @@
+2021-06-14 00:26:04,390 : ERROR : kafka_python.custom_errors : Kafka registry unreachable at address: Registry self.connectionection to address: http://10.100.100.8:8081 failed

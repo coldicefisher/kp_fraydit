@@ -1,0 +1,16 @@
+2021-05-27 00:26:54,819 : ERROR : kafka_python.custom_errors : Kafka broker unreachable at address: Broker connection to address: 10.100.100.8:9999 failed
+2021-05-27 00:44:34,146 : ERROR : kafka_python.custom_errors : Kafka broker unreachable at address: Broker connection to address: 10.100.100.8:9999 failed
+2021-05-27 01:11:31,886 : ERROR : kafka_python.custom_errors : Kafka broker unreachable at address: Broker connection to address: 1.1.1.1:1000 failed
+2021-05-27 15:36:09,205 : ERROR : kafka_python.custom_errors : Kafka offline
+2021-05-27 15:38:59,931 : ERROR : kafka_python.custom_errors : Kafka offline
+2021-05-27 16:15:46,960 : ERROR : kafka_python.custom_errors : Kafka offline
+2021-05-27 16:17:06,422 : ERROR : kafka_python.custom_errors : Kafka broker unreachable at address: Broker connection to address: 10.100.100.8:7000 failed
+2021-05-27 16:26:33,300 : ERROR : kafka_python.custom_errors : Kafka broker unreachable at address: Broker connection to address: 10.100.100.8:7000 failed
+2021-05-27 16:41:12,338 : ERROR : kafka_python.custom_errors : Kafka registry unreachable at address: Registry connection to address: http://10.100.100.8:8081 failed
+2021-05-27 17:04:05,048 : ERROR : kafka_python.custom_errors : Kafka broker unreachable at address: 10.100.100.8:7000
+2021-05-27 17:13:10,002 : ERROR : kafka_python.custom_errors : Kafka broker unreachable at address: 10.100.100.8:7000
+2021-05-27 17:14:24,648 : ERROR : kafka_python.custom_errors : Kafka broker unreachable at address: 10.100.100.8:7000
+2021-05-27 17:19:37,683 : ERROR : kafka_python.custom_errors : Kafka registry unreachable at address: Registry connection to address: 10.100.100.8:7000 failed
+2021-05-27 17:53:36,911 : ERROR : kafka_python.custom_errors : Kafka registry unreachable at address: Registry connection to address: http://10.100.100.8:7000 failed
+2021-05-27 18:56:56,410 : ERROR : kafka_python.custom_errors : Kafka registry unreachable at address: Registry connection to address: http://10.100.100.8:8081 failed
+2021-05-27 19:40:31,554 : ERROR : kafka_python.custom_errors : Kafka registry unreachable at address: Registry connection to address: http://10.100.100.8:7000 failed

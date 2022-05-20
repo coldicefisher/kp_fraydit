@@ -1,0 +1,1 @@
+from kp_fraydit.test_all import test_base_producer_and_connection

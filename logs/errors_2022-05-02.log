@@ -1,0 +1,4 @@
+2022-05-02 00:20:23,792 : ERROR : kp_fraydit.custom_errors : Kafka registry unreachable at address: Registry self.connectionection to address: http://10.100.100.8:8081 failed
+2022-05-02 00:22:36,733 : ERROR : kp_fraydit.custom_errors : Kafka broker unreachable at address: 10.100.100.8:9092
+2022-05-02 00:23:55,418 : ERROR : kp_fraydit.custom_errors : Kafka broker unreachable at address: 10.100.100.8:9092
+2022-05-02 00:24:52,274 : ERROR : kp_fraydit.custom_errors : Kafka registry unreachable at address: http://10.100.100.8:8081

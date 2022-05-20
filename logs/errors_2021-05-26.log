@@ -1,0 +1,4 @@
+2021-05-26 21:02:00,943 : ERROR : kafka_python.custom_errors : <class 'AttributeError'>: __enter__
+2021-05-26 22:14:23,727 : ERROR : kafka_python.custom_errors : Kafka broker unreachable at address: Broker connection to address: 10.100.100.8:9999 failed
+2021-05-26 22:20:07,345 : ERROR : kafka_python.custom_errors : Kafka broker unreachable at address: Broker connection to address: 10.100.100.8:9999 failed
+2021-05-26 22:28:39,429 : ERROR : kafka_python.custom_errors : Kafka broker unreachable at address: Broker connection to address: 10.100.100.8:9999 failed

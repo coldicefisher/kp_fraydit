@@ -1,0 +1,11 @@
+2021-06-05 20:07:36,320 : ERROR : kafka_python.custom_errors : Kafka registry unreachable at address: Registry self.connectionection to address: http://10.100.100.8:8081 failed
+2021-06-05 20:07:36,392 : ERROR : kafka_python.custom_errors : Kafka registry unreachable at address: Registry self.connectionection to address: http://10.100.100.8:8081 failed
+2021-06-05 20:11:08,299 : ERROR : kafka_python.custom_errors : Kafka registry unreachable at address: Registry self.connectionection to address: http://10.100.100.8:8081 failed
+2021-06-05 20:14:47,464 : ERROR : kafka_python.custom_errors : Kafka registry unreachable at address: Registry self.connectionection to address: http://10.100.100.8:8081 failed
+2021-06-05 20:15:52,861 : ERROR : kafka_python.custom_errors : Kafka registry unreachable at address: Registry self.connectionection to address: http://10.100.100.8:8081 failed
+2021-06-05 20:34:51,009 : ERROR : kafka_python.custom_errors : Kafka registry unreachable at address: Registry self.connectionection to address: http://10.100.100.8:8081 failed
+2021-06-05 20:34:51,098 : ERROR : kafka_python.custom_errors : Kafka registry unreachable at address: Registry self.connectionection to address: http://10.100.100.8:8081 failed
+2021-06-05 20:40:31,618 : ERROR : kafka_python.custom_errors : Kafka registry unreachable at address: Registry self.connectionection to address: http://10.100.100.8:8081 failed
+2021-06-05 22:00:53,788 : ERROR : kafka_python.custom_errors : Kafka registry unreachable at address: Registry self.connectionection to address: http://10.100.100.8:8081 failed
+2021-06-05 22:02:48,394 : ERROR : kafka_python.custom_errors : Kafka registry unreachable at address: Registry self.connectionection to address: http://10.100.100.8:8081 failed
+2021-06-05 23:01:02,724 : ERROR : kafka_python.custom_errors : Kafka broker unreachable at address: http://10.100.100.8:9092

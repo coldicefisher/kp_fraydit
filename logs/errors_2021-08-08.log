@@ -1,0 +1,2 @@
+2021-08-08 22:12:01,292 : ERROR : kp_fraydit.custom_errors : Kafka broker unreachable at address: 10.100.100.1:9092
+2021-08-08 22:29:19,668 : ERROR : kp_fraydit.custom_errors : Kafka broker unreachable at address: 10.100.100.8:9092

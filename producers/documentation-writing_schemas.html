@@ -1,0 +1,42 @@
+<html>
+    <head></head>
+    <body>
+
+        <h1>Primitive Types</h1>
+        <br />
+        The set of primitive type names is:
+            <ul>
+                <li>null: no value</li>
+                <li>boolean: a binary value</li>
+                <li>int: 32-bit signed integer</li>
+                <li>long: 64-bit signed integer</li>
+                <li>float: single precision (32-bit) IEEE 754 floating-point number</li>
+                <li>double: double precision (64-bit) IEEE 754 floating-point number</li>
+                <li>bytes: sequence of 8-bit unsigned bytes</li>
+                <li>string: unicode character sequence</li>
+            
+            </ul>
+        Primitive types have no specified attributes.
+
+        Primitive type names are also defined type names. Thus, for example, the schema "string" is equivalent to:
+
+        {"type": "string"}
+
+        Complex Types
+
+        Avro supports six kinds of complex types: records, enums, arrays, maps, unions and fixed.
+        Records
+
+        Records use the type name "record" and support three attributes:
+
+            name: a JSON string providing the name of the record (required).
+            namespace, a JSON string that qualifies the name;
+            doc: a JSON string providing documentation to the user of this schema (optional).
+            aliases: a JSON array of strings, providing alternate names for this record (optional).
+            fields: a JSON array, listing fields (required). Each field is a JSON object with the following attributes:
+                name: a JSON string providing the name of the field (required), and
+                doc: a JSON string describing this field for users (optional).
+                type: A JSON object defining a schema, or a JSON string naming a record definition (required).
+                default: A default value for this field, used when reading instances that lack this field (optional). Permitted values depend on the field's schema type, according to the table below. Default values for union fields correspond to the first schema in the union. Default values for bytes and fixed fields are JSON strings, where Unicode code points 0-255 are mapped to unsigned 8-bit byte values 0-255. 
+        </body>
+    </html>
