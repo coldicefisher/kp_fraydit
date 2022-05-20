@@ -19,17 +19,14 @@ There are several classes which need to be refactored. The primary classes that 
 In your code:
 //////////////////////////////////////////////// Producer Example 1 ///////////////////////////////////////////////
 
-@property
-def nothing():
-    pass
-    
+```    
 from kp_fraydit.producers.base_producer import BaseProducer
 
 prod = BaseProducer.from_topic(topic_name='TOPIC_NAME', include_value_fields=['OPTIONAL_FIELD1', 'OPTIONAL_FIELD2'], include_key_fields=['OPTIONAL_KEY_FIELD1'], preserve_order=False)
 
 prod.addValueArgs(OPTIONAL_FIELD1='programmer', OPTIONAL_FIELD2='wants to')
 prod.addKeyArgs(OPTIONAL_KEY_FIELD1='include me')
-
+```
 //////////////////////////////////////////////// End Producer Example 1 ////////////////////////////////////////////
 
 
